@@ -8,7 +8,7 @@ COPY package*.json ./
 
 USER node
 
-RUN npm install express web-push dotenv morgan
+RUN npm install
 
 COPY --chown=node:node . .
 
