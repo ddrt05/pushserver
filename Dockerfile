@@ -1,24 +1,17 @@
-# Build with:  docker build -t pushserver .
-# Run with:    docker run --name="pushserver" -d -p 54545:54545 pushserver
-# Note: -p 54545:54545 forwards the port. This is super insecure.
+FROM node:10-alpine
 
-FROM ubuntu:xenial
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-# Use this port
-EXPOSE 54545
+WORKDIR /home/node/app
 
-# Install the needed nodejs packages
-RUN apt-get update
-RUN apt-get -y install nodejs
-RUN apt-get -y install npm
+COPY package*.json ./
 
-# Ubuntu has some issues with nodejs. We have to create a symlink
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
+USER node
 
-# Copy our server and install it
-#RUN mkdir -p /usr/pushserver
-#COPY . /usr/pushserver/
-#RUN cd /usr/pushserver && npm install -g
+RUN npm install
 
-# Run this, when the images is loaded:
-E#NTRYPOINT ["pushserver", "-c", "/usr/pushserver/config/config.json"]
+COPY --chown=node:node . .
+
+EXPOSE 3000
+
+CMD [ "node", "index.js" ]
