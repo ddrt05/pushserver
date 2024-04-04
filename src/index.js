@@ -17,10 +17,6 @@ app.use(require('./routes/index'));
 // Contenido estático (Static content)
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello from Node, from inside a docker container...</h1>");
-});
-
-app.listen(3000, function () {
+app.listen(80, function () {
     console.log('Server listening on port 3000!');
 })
