@@ -16,6 +16,7 @@ app.use(require('./routes/index'));
 
 // Contenido estático (Static content)
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/', express.Router());
 
 app.listen(3000, function () {
     console.log('Server listening on port 3000!');
