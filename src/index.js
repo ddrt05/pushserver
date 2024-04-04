@@ -18,5 +18,5 @@ app.use(require('./routes/index'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.listen(80, function () {
-    console.log('Server listening on port 3000!');
+    console.log('Server listening on port 80!');
 })
