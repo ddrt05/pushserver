@@ -17,6 +17,6 @@ app.use(require('./routes/index'));
 // Contenido estático (Static content)
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(80, function () {
+app.listen(3000, function () {
     console.log('Server listening on port 80!');
 })
