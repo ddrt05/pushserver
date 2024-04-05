@@ -1,24 +1,35 @@
-require('dotenv').config();
-const express = require("express");
-const morgan = require('morgan');
-const path = require("path");
-const bodyParser = require("body-parser");
+const { Router } = require("express");
+const router = Router();
+const webpush = require("../webpush");
 
-const app = express();
+ router.post("/enviar-mensaje", async (req, res) => {
+    const { message } = req.body;
+    const { title } = req.body;
+    const { endpoint } = req.body;
+    const { p256dh } = req.body;
+    const { auth } = req.body;
 
+    const payload = JSON.stringify({
+      title,
+      message 
+    });
 
-//Funciones rutas (Middleware)
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+    const suscripcion ={
+      endpoint,
+      expirationTime: null,
+      keys:{
+        p256dh,
+        auth
+      }
+    };
 
-//Rutas servidor (Routes)
-app.use(require('./routes/index'));
+    try {
+      await webpush.sendNotification(suscripcion, payload);
+      res.status(200).json();
+    } catch (error) {
+      console.log(error);
+      res.status(400).json();
+    }
+  });
 
-// Contenido estático (Static content)
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.listen(3000, function () {
-    console.log('Server listening on port 3000!');
-})
-
+module.exports = router;
