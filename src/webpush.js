@@ -4,8 +4,8 @@
 console.log (process.env.PRIVATE_VAPID_KEY);
 console.log (process.env.PUBLIC_VAPID_KEY);
 console.log ("nueva version 2");
-//const publica = base64url.encode(process.env.PUBLIC_VAPID_KEY);
-//const privada = base64url.encode(process.env.PRIVATE_VAPID_KEY);
+const publica = "";//base64url.encode(process.env.PUBLIC_VAPID_KEY);
+const privada = "";//base64url.encode(process.env.PRIVATE_VAPID_KEY);
 console.log ("publica " +publica);
 console.log ("privada " +privada);
  webpush.setVapidDetails(
