@@ -1,10 +1,10 @@
-const webpush = require("web-push");
+ webpush = require("web-push");
 
 console.log (process.env.PRIVATE_VAPID_KEY);
 console.log (process.env.PUBLIC_VAPID_KEY);
-console.log ("nueva version");
-const publica = Buffer.from(process.env.PUBLIC_VAPID_KEY).toString('base64url');
-const privada = Buffer.from(process.env.PRIVATE_VAPID_KEY).toString('base64url');
+console.log ("nueva version 2");
+const publica = UrlBase64.Encode(process.env.PUBLIC_VAPID_KEY);
+const privada = UrlBase64.Encode(ByteArrayPadLeft(process.env.PRIVATE_VAPID_KEY, 32));
 console.log ("publica " +publica);
 console.log ("privada " +privada);
  webpush.setVapidDetails(
@@ -12,5 +12,13 @@ console.log ("privada " +privada);
    publica,
    privada
  );
+
+private static byte[] ByteArrayPadLeft(byte[] src, int size)
+ {
+  var dst = new byte[size];
+  var startAt = dst.Length - src.Length;
+  Array.Copy(src, 0, dst, startAt, src.Length);
+  return dst;
+}
 
 module.exports = webpush;
