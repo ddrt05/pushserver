@@ -13,7 +13,7 @@ console.log ("privada " +privada);
    privada
  );
 
-function byte[] ByteArrayPadLeft(byte[] src, int size)
+function ByteArrayPadLeft(src, size)
  {
   var dst = new byte[size];
   var startAt = dst.Length - src.Length;
