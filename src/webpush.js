@@ -1,5 +1,5 @@
  webpush = require("web-push");
- //const base64url = require('base64-url');
+ const base64url = require('base64-url');
 
 console.log (process.env.PRIVATE_VAPID_KEY);
 console.log (process.env.PUBLIC_VAPID_KEY);
