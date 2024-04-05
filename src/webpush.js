@@ -8,11 +8,11 @@ const publica = base64url.encode(process.env.PUBLIC_VAPID_KEY);
 const privada = base64url.encode(process.env.PRIVATE_VAPID_KEY);
 console.log ("publica " +publica);
 console.log ("privada " +privada);
-// webpush.setVapidDetails(
- //  "mailto:druizt@externas.jccm.es",
- //  publica,
-//   privada
-// );
+ webpush.setVapidDetails(
+   "mailto:druizt@externas.jccm.es",
+   publica,
+   privada
+ );
 
 function ByteArrayPadLeft(src, size)
  {
